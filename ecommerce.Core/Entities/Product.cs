@@ -1,4 +1,4 @@
-namespace ecommerce.API.Entities;
+namespace ecommerce.Core.Entities;
 
 public class Product
 {
