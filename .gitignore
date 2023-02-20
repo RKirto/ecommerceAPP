@@ -10,3 +10,5 @@ riderModule.iml
 .idea/.idea.ecommerce.API/.idea/vcs.xml
 .idea/.idea.ecommerce.API/.idea/workspace.xml
 ecommerce.API.sln.DotSettings.user
+.vscode/launch.json
+.vscode/tasks.json
