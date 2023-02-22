@@ -29,5 +29,17 @@ namespace ecommerce.API.Controllers
             var products = await _service.GetProductsAsync();
             return Ok(products);
         }
+
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands() 
+        {
+            return Ok(await _service.GetProductBrandsAsyc());
+        }
+
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes() 
+        {
+            return Ok(await _service.GetProductTypesAsync());
+        }
     }
 }
