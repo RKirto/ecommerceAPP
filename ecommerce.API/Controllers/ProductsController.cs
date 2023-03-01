@@ -12,34 +12,39 @@ namespace ecommerce.API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductService _service;
-        public ProductsController(IProductService service){
-            _service = service;
+        private readonly IGenericService<Product> _productService;
+        private readonly IGenericService<ProductBrand> _productBrandService;
+        private readonly IGenericService<ProductType> _productTypeService;
+
+        public ProductsController(IGenericService<Product> productService, IGenericService<ProductBrand> productBrandService, IGenericService<ProductType> productTypeService){
+            _productService = productService;
+            _productBrandService = productBrandService;
+            _productTypeService = productTypeService;
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return await _service.GetProductByIdAsync(id);
+            return await _productService.GetByIdAsync(id);
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var products = await _service.GetProductsAsync();
-            return Ok(products);
+            return Ok(await _productService.ListAllAsync());
         }
 
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands() 
         {
-            return Ok(await _service.GetProductBrandsAsyc());
+            return Ok(await _productBrandService.ListAllAsync());
         }
 
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes() 
         {
-            return Ok(await _service.GetProductTypesAsync());
+            return Ok(await _productTypeService.ListAllAsync());
         }
     }
 }
