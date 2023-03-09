@@ -1,3 +1,4 @@
+using ecommerce.API.Helpers;
 using ecommerce.Core.Interfaces;
 using ecommerce.Infrastructure.Data;
 using ecommerce.Infrastructure.Services;
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddScoped(typeof(IGenericService<>), (typeof(GenericService<>)));
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(x =>
     x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
